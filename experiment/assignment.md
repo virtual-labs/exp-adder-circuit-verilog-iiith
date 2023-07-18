@@ -1,0 +1,1 @@
+1. Design a Ripple Adder circuit module using Full adder and Half adder modules already built and validate them.
