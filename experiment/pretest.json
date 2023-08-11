@@ -2,38 +2,140 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "Which programming language is commonly used to design a half adder and full adder?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "C++",
+        "b": "Java",
+        "c": "Verilog",
+        "d": "Python"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Incorrect. C++ is a general-purpose programming language and is not specifically associated with designing digital circuits.",
+        "b": "Incorrect. Java is also a general-purpose programming language and is not commonly used for designing digital circuits.",
+        "c": "Correct. Verilog is a hardware description language commonly used for designing digital circuits, including half adders and full adders.",
+        "d": "Incorrect. Python is a high-level programming language primarily used for general-purpose programming and is not commonly used for designing digital circuits."
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which Verilog keyword is used to define a module?",
+      "answers": {
+        "a": "module",
+        "b": "wire",
+        "c": "assign",
+        "d": "always"
+      },
+      "explanations": {
+        "a": "Correct. The 'module' keyword is used to define a module in Verilog, which represents a hardware component.",
+        "b": "Incorrect. The 'wire' keyword is used for declaring signals in Verilog, not for defining a module.",
+        "c": "Incorrect. The 'assign' keyword is used for continuous assignment of values to signals, not for defining a module.",
+        "d": "Incorrect. The 'always' keyword is used for specifying procedural blocks in Verilog, not for defining a module."
       },
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
     {
-      "question": "This is a Sample Question 2?",
+      "question": "Which Verilog operator is used for bitwise AND operation?",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "&",
+        "b": "|",
+        "c": "~",
+        "d": "^"
       },
       "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+        "a": "Correct. The '&' operator is used for bitwise AND operation in Verilog.",
+        "b": "Incorrect. The '|' operator is used for bitwise OR operation in Verilog, not bitwise AND.",
+        "c": "Incorrect. The '~' operator is used for bitwise negation (NOT) operation in Verilog.",
+        "d": "Incorrect. The '^' operator is used for bitwise XOR (exclusive OR) operation in Verilog, not bitwise AND."
       },
-      "correctAnswer": "c",
+      "correctAnswer": "a",
       "difficulty": "beginner"
+    },
+    {
+      "question": "Which Verilog keyword is commonly used to define a 1-bit output signal in a module?",
+      "answers": {
+        "a": "Input",
+        "b": "Output",
+        "c": "Wire",
+        "d": "Reg"
+      },
+      "explanations": {
+        "a": "Incorrect. The 'input' keyword is used for defining input ports, not output signals.",
+        "b": "Correct. The 'output' keyword is commonly used in Verilog to define a 1-bit output signal in a module.",
+        "c": "Incorrect. The 'wire' keyword is used for declaring signals, but not specifically for defining output signals.",
+        "d": "Incorrect. The 'reg' keyword is used for defining registers, not specifically for defining output signals."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In Verilog, what does a non-blocking assignment ('<=') indicate?",
+      "answers": {
+        "a": "Parallel assignment",
+        "b": "Sequential assignment",
+        "c": "Combinational assignment",
+        "d": "Immediate assignment"
+      },
+      "explanations": {
+        "a": "Correct. A non-blocking assignment ('<=') in Verilog indicates parallel assignment, where the assignments are evaluated concurrently.",
+        "b": "Incorrect. Sequential assignment is indicated by the blocking assignment operator ('=')",
+        "c": "Incorrect. Combinational assignment is not specifically indicated by the non-blocking assignment operator ('<=').",
+        "d": "Incorrect. Immediate assignment is indicated by the blocking assignment operator ('='), not the non-blocking assignment ('<=')."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which Verilog construct is used to model synchronous behavior in a module?",
+      "answers": {
+        "a": "always_comb",
+        "b": "always_ff",
+        "c": "always_latch",
+        "d": "always_comb_ff"
+      },
+      "explanations": {
+        "a": "Incorrect. The 'always_comb' construct is used for combinational logic, not for modeling synchronous behavior.",
+        "b": "Correct. The 'always_ff' construct is used to model synchronous behavior in a module.",
+        "c": "Incorrect. The 'always_latch' construct is used to model latches, not synchronous behavior.",
+        "d": "Incorrect. The 'always_comb_ff' construct is not a valid Verilog construct."
+      },
+      "correctAnswer": "b",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Which Verilog keyword is commonly used to define an input port in a module?",
+      "answers": {
+        "a": "Input",
+        "b": "Output",
+        "c": "Wire",
+        "d": "Reg"
+      },
+      "explanations": {
+        "a": "Correct. The 'input' keyword is commonly used in Verilog to define an input port in a module.",
+        "b": "Incorrect. The 'output' keyword is used to define an output port, not an input port.",
+        "c": "Incorrect. The 'wire' keyword is used for declaring signals, but not specifically for defining input ports.",
+        "d": "Incorrect. The 'reg' keyword is used for defining registers, not specifically for defining input ports."
+      },
+      "correctAnswer": "a",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In Verilog, how can you specify a delay for a simulation time unit?",
+      "answers": {
+        "a": "#1ns",
+        "b": "#1",
+        "c": "#1us",
+        "d": "#1ps"
+      },
+      "explanations": {
+        "a": "Correct. '#1ns' specifies a delay of 1 nanosecond in Verilog.",
+        "b": "Incorrect. '#1' alone does not specify a specific time unit in Verilog.",
+        "c": "Incorrect. '#1us' specifies a delay of 1 microsecond, not a simulation time unit.",
+        "d": "Incorrect."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }

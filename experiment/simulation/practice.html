@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual labs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/css/style.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <div class="columns mt-2 is-variable is-1 is-centered is-flex is-flex-wrap-wrap">
+        <div class="v-tabs">
+            <ul>
+                <li class="is-active">
+                    <a>
+                        <span>HALF ADDER</span>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <span>FULL ADDER</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="columns is-centered">
+        <div class="column">
+            <div class="v-collapsible-instruction-container v-instruction-container">
+                <div class="v-collapsible is-size-5" id="task-description">
+                    Instructions
+                </div>
+                <div class="v-content" style="text-align: left; padding-left: 10%; padding-right: 10%;">
+                    <ul style="list-style: disc;">
+                        <li>The verilog module and testbench code are partially filled and divided into code blocks.
+                        </li>
+                        <li>Drag and drop these code blocks to arrange them in the correct order for the code to work.
+                        </li>
+                        <li>Complete the partially filled code blocks</li>
+                        <li>Once you have completed the code and rearranged the blocks as required, click on
+                            validate. This will give the output truth table as per the code and will also give a
+                            success/failure message accordingly.</li>
+                        <li>Clicking on reset will reset the experiment and you can start your practice again.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns is-variable is-1 is-centered is-flex is-flex-wrap-wrap my-0">
+        <div id="start" class="column is-1-desktop is-2-tablet is-3-mobile center-content">
+            <button class="v-button" onclick="ValidateCode()">Validate</button>
+        </div>
+        <div id="restart" class="column is-1-desktop is-2-tablet is-3-mobile center-content">
+            <button class="v-button" onclick="location.reload()">Reset</button>
+        </div>
+    </div>
+    <div class="columns is-variable is-3 is-centered is-flex is-flex-wrap-wrap">
+        <div class="column is-3-desktop is-7-tablet is-11-mobile center-content">
+            <div class="v-datalist-container">
+                <div class="v-datalist-title">
+                    Verilog Module
+                </div>
+                <div id="container">
+                    <ul class="drag-sort-enable custom-list" id="module">
+                        <li id="1">
+                            <span class="comment">// Define module name, inputs and outputs </span>
+                            <p>module <input type="text" id="module-name" placeholder="Enter a module name"> ( </p>
+                            <p>&nbsp;&nbsp;<label>input </label>
+                                <select id="input1-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an input</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ,
+                            </p>
+                            <p id="second-input-module">&nbsp;&nbsp;input&nbsp;
+                                <select id="input2-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an input</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ,
+                            </p>
+                            <div id="input-declare-Cin">
+                                <!-- <p>&nbsp;&nbsp;input&nbsp;
+                                    <select id="inputCin-selector">
+                                        <option value="" disabled selected>Select an input</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="Cin">Cin</option>
+                                        <option value="Sum">Sum</option>
+                                        <option value="Carry">Carry</option>
+                                    </select>
+                                </p>  -->
+                            </div>
+                            <p>&nbsp;&nbsp;output
+                                <select id="output1-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an output</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select>
+                            </p>
+                            <p>&nbsp;&nbsp;output
+                                <select id="output2-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an output</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select>
+                            </p>
+                            <p>);</p>
+                        </li>
+                        <li id="2">
+                            <span class="comment">&nbsp;// Define the functionality of this module.</span>
+                            <div id="function">
+                                <p>
+                                    &nbsp; assign&nbsp;
+                                    <select id="LHS1-selector">
+                                        <option value="" disabled selected>Select LHS</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="Sum">Sum</option>
+                                        <option value="Carry">Carry</option>
+                                    </select>
+                                    &nbsp;
+                                    <select id="operator1-selector">
+                                        <option value="" disabled selected>Select Assignmnet Operator</option>
+                                        <option value="=">=</option>
+                                        <option value="<=">
+                                            <= </option>
+                                    </select>
+                                    &nbsp;
+                                    <input type="text" id="logic-expression1"
+                                        placeholder="Enter the RHS logic expression">
+                                    &nbsp;
+                                    ;
+                                </p>
+                                <p>
+                                    &nbsp; assign&nbsp;
+                                    <select id="LHS2-selector">
+                                        <option value="" disabled selected>Select LHS</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="Sum">Sum</option>
+                                        <option value="Carry">Carry</option>
+                                    </select>
+                                    &nbsp;
+                                    <select id="operator2-selector">
+                                        <option value="" disabled selected>Select Operator</option>
+                                        <option value="=">=</option>
+                                        <option value="<=">
+                                            <= </option>
+                                    </select>
+                                    &nbsp;
+                                    <input type="text" id="logic-expression2"
+                                        placeholder="Enter the RHS logic expression">
+                                    &nbsp;
+                                    ;
+                                </p>
+                                <!-- for Full adder: -->
+                                <!-- &nbsp;wire c,c1,s;<br>
+                                <span class="comment">&nbsp;// In a half adder module, the order of module instantiation is: input1, input2, sum, carry and module name is "half_adder"</span>
+                                <br>
+                                &nbsp;half_adder ha0(
+                                <select id="arg1-ha0">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select> , 
+                                <select id="arg2-ha0">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select> , 
+                                <select id="arg3-ha0">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select>, 
+                                <select id="arg4-ha0">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select> );<br>
+                                &nbsp;half_adder ha1(
+                                <select id="arg1-ha1">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select> , 
+                                <select id="arg2-ha1">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select> , 
+                                <select id="arg3-ha1">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select>, 
+                                <select id="arg4-ha1">
+                                    <option value="" disabled selected>Select argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select> );<br>
+                                &nbsp;assign <select id="LHS-selector">
+                                    <option value="" disabled selected>Select LHS</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select>
+                                &nbsp;
+                                    <select id="operator-selector">
+                                        <option value="" disabled selected>Select Operator</option>
+                                        <option value="=">=</option>
+                                        <option value="<=">
+                                            <= </option>
+                                    </select>
+                                    &nbsp;
+                                    <select id="left-selector">
+                                    <option value="" disabled selected>Select LHS</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select>
+                                &nbsp;
+                                    <select id="middle-selector">
+                                        <option value="" disabled selected>Select Operator</option>
+                                        <option value="|">|</option>
+                                        <option value="&">&</option>
+                                        <option value="^">^</option>
+                                    </select>
+                                    &nbsp;
+                                    <select id="right-selector">
+                                    <option value="" disabled selected>Select LHS</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Cin">Cin</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                    <option value="c">c</option>
+                                    <option value="c1">c1</option>
+                                    <option value="s">s</option>
+                                </select>
+                                &nbsp;; -->
+                            </div>
+                        </li>
+                        <li id="3"><span class="comment">// End of the module</span><br>endmodule</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column is-3-desktop is-7-tablet is-11-mobile center-content">
+            <div class="v-datalist-container">
+                <div class="v-datalist-title">
+                    Verilog Testbench
+                </div>
+                <div id="containerTB">
+                    <ul class="drag-sort-enable custom-list" id="tb">
+                        <li id="1TB">
+                            <span class="comment">// Define Test Bench name</span>
+                            <p>
+                                module <input type="text" id="tb-name" placeholder="Enter a test bench name"> ;
+                            </p>
+                        </li>
+                        <li id="2TB">
+                            <p class="comment">
+                                // Declare the input and output variables
+                            </p>
+                            <p>&nbsp;&nbsp;reg
+                                <select id="input1TB-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an input/output</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ;
+                            </p>
+                            <p>&nbsp;&nbsp;reg
+                                <select id="input2TB-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an input/output</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ;
+                            </p>
+                            <div id="tb-Cin-declare">
+                                <!-- <p>&nbsp;&nbsp;reg
+                                    <select id="inputCinTB-selector">
+                                        <option value="" disabled selected>Select an input/output</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="Cin">Cin</option>
+                                        <option value="Sum">Sum</option>
+                                        <option value="Carry">Carry</option>
+                                    </select> ;
+                                </p> -->
+                            </div>
+                            <p>&nbsp;&nbsp;wire
+                                <select id="input3TB-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an input/output</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ;
+                            </p>
+                            <p>&nbsp;&nbsp;wire
+                                <select id="input4TB-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an input/output</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ;
+                            </p>
+                        </li>
+                        <li id="3TB">
+                            &nbsp;&nbsp;<span class="comment">// Instantiate the gate module</span>
+                            <p>
+                                &nbsp;&nbsp;<input type="text" id="module-name-tb"
+                                    placeholder="Enter the adder module name "> uut
+                                (<br>
+                            </p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <select id="argument1-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an Argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ,
+                            </p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <select id="argument2-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an Argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ,
+                            </p>
+                            <div id="tb-module-Cin">
+                                <!-- <p>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <select id="argumentCin-selector">
+                                        <option value="" disabled selected>Select an Argument</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="Cin">Cin</option>
+                                        <option value="Sum">Sum</option>
+                                        <option value="Carry">Carry</option>
+                                    </select> ,
+                                </p> -->
+                            </div>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <select id="argument3-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an Argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> , 
+                            </p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <select id="argument4-selector" class="select-Cin">
+                                    <option value="" disabled selected>Select an Argument</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="Sum">Sum</option>
+                                    <option value="Carry">Carry</option>
+                                </select> ) ;
+                            </p>
+                        </li>
+                        <li id="4TB">
+                            <span class="comment">// Initial Block</span>
+                            <p>
+                                &nbsp;&nbsp;initial begin
+                            </p>
+                            <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Defining the input waves A, B</span>
+                            <div id="input-wave">
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;A = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;B = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;A = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;B = 1;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;A = 1;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;B = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;A = 1;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;B = 1;<br>
+                                </p>
+                                <!-- for full adder -->
+                                <!-- <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 0; b = 0; cin = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 0; b = 0; cin = 1;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 0; b = 1; cin = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 0; b = 1; cin = 1;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 1; b = 0; cin = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 1; b = 0; cin = 1;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 1; b = 1; cin = 0;<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;a = 1; b = 1; cin = 1;<br>
+                                </p> -->
+                            </div>
+                            <p><br>&nbsp;&nbsp;&nbsp;&nbsp;$finish; <br>&nbsp;&nbsp;end</p>
+                        </li>
+                        <li id="5TB"><span class="comment">// End of the module</span><br>endmodule
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="column is-3-desktop is-7-tablet is-11-mobile center-content">
+            <div class="v-datalist-container">
+                <div class="v-datalist-title">
+                    Observations
+                </div>
+                <div class="v-datalist-row">
+                    <div id="result"></div>
+                    <div class="v-table-wrap">
+                        <table class="table is-bordered is-fullwidth">
+                            <thead id="table-head">
+                            </thead>
+                            <tbody id="table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const currentTab = { HA: 0, FA: 1 }
+            let selectedTab = currentTab.HA;
+            const tabs = document.querySelectorAll('.v-tabs li');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => item.classList.remove('is-active'));
+                    tab.classList.add('is-active');
+                    let parent = tab.parentNode;
+                    selectedTab = Array.prototype.indexOf.call(parent.children, tab);
+                    display();
+                })
+            })
+        </script>
+        <script src="./js/main.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.8-b/js/script.js"></script>
+
+</body>
+
+</html>
