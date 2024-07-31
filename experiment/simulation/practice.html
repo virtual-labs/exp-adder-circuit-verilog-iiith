@@ -67,7 +67,7 @@
                 <div id="container">
                     <ul class="drag-sort-enable custom-list" id="module">
                         <li id="1">
-                            <span class="comment">// Define module name, inputs and outputs </span>
+                            
                             <p>module <input type="text" id="module-name" placeholder="Enter a module name"> ( </p>
                             <p>&nbsp;&nbsp;<label>input </label>
                                 <select id="input1-selector" class="select-Cin">
@@ -120,7 +120,7 @@
                             <p>);</p>
                         </li>
                         <li id="2">
-                            <span class="comment">&nbsp;// Define the functionality of this module.</span>
+                            
                             <div id="function">
                                 <p>
                                     &nbsp; assign&nbsp;
@@ -133,7 +133,7 @@
                                     </select>
                                     &nbsp;
                                     <select id="operator1-selector">
-                                        <option value="" disabled selected>Select Assignmnet Operator</option>
+                                        <option value="" disabled selected>Select  Operator</option>
                                         <option value="=">=</option>
                                         <option value="<=">
                                             <= </option>
@@ -312,7 +312,7 @@
                                 &nbsp;; -->
                             </div>
                         </li>
-                        <li id="3"><span class="comment">// End of the module</span><br>endmodule</li>
+                        <li id="3"><br>endmodule</li>
                     </ul>
                 </div>
             </div>
@@ -322,18 +322,20 @@
                 <div class="v-datalist-title">
                     Verilog Testbench
                 </div>
+                <div  class=" custom-list" style="  width:250px ; background-color:#D3D3D3;"><span class="comment"></span><br>`timescale 1ns/1ns
+                </div>
                 <div id="containerTB">
+                    
                     <ul class="drag-sort-enable custom-list" id="tb">
+                       
                         <li id="1TB">
-                            <span class="comment">// Define Test Bench name</span>
+                            
                             <p>
                                 module <input type="text" id="tb-name" placeholder="Enter a test bench name"> ;
                             </p>
                         </li>
                         <li id="2TB">
-                            <p class="comment">
-                                // Declare the input and output variables
-                            </p>
+                           
                             <p>&nbsp;&nbsp;reg
                                 <select id="input1TB-selector" class="select-Cin">
                                     <option value="" disabled selected>Select an input/output</option>
@@ -384,7 +386,7 @@
                             </p>
                         </li>
                         <li id="3TB">
-                            &nbsp;&nbsp;<span class="comment">// Instantiate the gate module</span>
+                            &nbsp;&nbsp;
                             <p>
                                 &nbsp;&nbsp;<input type="text" id="module-name-tb"
                                     placeholder="Enter the adder module name "> uut
@@ -440,11 +442,11 @@
                             </p>
                         </li>
                         <li id="4TB">
-                            <span class="comment">// Initial Block</span>
+                            
                             <p>
                                 &nbsp;&nbsp;initial begin
                             </p>
-                            <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Defining the input waves A, B</span>
+                           
                             <div id="input-wave">
                                 <p>
                                     &nbsp;&nbsp;&nbsp;&nbsp;A = 0;<br>
@@ -459,8 +461,8 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;A = 1;<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;B = 1;<br>
                                 </p>
-                                <!-- for full adder -->
-                                <!-- <p>
+                                for full adder 
+                                 <p>
                                     &nbsp;&nbsp;&nbsp;&nbsp;a = 0; b = 0; cin = 0;<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;a = 0; b = 0; cin = 1;<br>
@@ -476,11 +478,11 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;a = 1; b = 1; cin = 0;<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;#1<br>
                                     &nbsp;&nbsp;&nbsp;&nbsp;a = 1; b = 1; cin = 1;<br>
-                                </p> -->
+                                </p>
                             </div>
                             <p><br>&nbsp;&nbsp;&nbsp;&nbsp;$finish; <br>&nbsp;&nbsp;end</p>
                         </li>
-                        <li id="5TB"><span class="comment">// End of the module</span><br>endmodule
+                        <li id="5TB"><br>endmodule
                         </li>
                     </ul>
                 </div>

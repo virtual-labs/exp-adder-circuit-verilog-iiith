@@ -342,7 +342,7 @@ export function display() {
         </select>
         &nbsp;
         <select id="operator1-selector">
-            <option value="" disabled selected>Select Assignmnet Operator</option>
+            <option value="" disabled selected>Select Assignment Operator</option>
             <option value="=">=</option>
             <option value="<=">
                 <= </option>
