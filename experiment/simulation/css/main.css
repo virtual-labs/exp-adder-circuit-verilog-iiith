@@ -70,20 +70,13 @@
     border-color: orange;
   }
   
-  #container {
+  #container, #containerTB {
     display: flex;
     flex-direction: column;
-    padding: auto;
-    margin: auto;
+    padding: 0;
+    margin: 0;
     text-align: left;
-  }
-  
-  #containerTB {
-    display: flex;
-    flex-direction: column;
-    padding: auto;
-    margin: auto;
-    text-align: left;
+    width: 100%;
   }
   
   .comment {
@@ -95,6 +88,7 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+    width: 100%;
   }
   
   ul.custom-list li {
@@ -105,6 +99,8 @@
     cursor: move;
     margin-left: 10px;
     margin-right: 10px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
   }
   
   li.drag-sort-active {
