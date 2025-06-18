@@ -1,88 +1,161 @@
-> **Important Note:** This simulation is designed for desktop view only. For the best experience, please use a desktop monitor with a minimum resolution of 1280x720 pixels. The simulation may not function properly on smaller screens like mobile devices or tablets.
+> **Important Note:** This simulation is optimized for desktop view. For the best experience, please use a desktop monitor with a minimum resolution of 1280x720 pixels. Mobile devices and tablets are not supported.
 
-### 1. Understanding the Simulation
+### Implementation Steps
 
-This simulation helps you learn about two types of adders in Verilog:
+#### 1. Module Setup
 
-- **Half Adder:** A combinational circuit that adds two single-bit binary numbers and produces a sum and carry output.
-- **Full Adder:** A combinational circuit that adds three single-bit binary numbers and produces a sum and carry output.
+1. **Select Adder Type**
+   - Choose between Half Adder or Full Adder using the tabs
+   - Each type has specific port requirements:
+     - Half Adder: 2 inputs, 2 outputs
+     - Full Adder: 3 inputs, 2 outputs
 
-### 2. Getting Started
+2. **Naming Conventions**
+   - Module Name Rules:
+     - Start with a letter
+     - Use only letters, numbers, and underscores
+     - No special characters or spaces
+     - Example: `half_adder`, `full_adder`
+   - Testbench Name Rules:
+     - Must end with '_tb'
+     - Example: `half_adder_tb`, `full_adder_tb`
 
-1. Select the type of adder you want to work with using the tabs at the top of the simulation.
-2. Enter your module name and testbench name in the respective fields:
-   - Module names must follow [Verilog naming conventions](https://www.chipverify.com/verilog/verilog-syntax).
-   - Only letters, numbers, and underscores are allowed (no hyphens or special characters).
-   - Testbench name must end with '_tb'.
+#### 2. Module Implementation
 
-### 3. Building the Verilog Module
+##### Half Adder Implementation Steps
+1. **Port Declaration**
+   ```verilog
+   module half_adder(
+       input A,
+       input B,
+       output Sum,
+       output Carry
+   );
+   ```
 
-1. In the first column, arrange the code blocks in the correct order by dragging and dropping them:
-   - The code block that defines inputs, outputs, and module name should be placed first
-   - Followed by the code block that defines the module functionality
-   - Finally, the end of module block
+2. **Logic Implementation**
+   ```verilog
+   assign Sum = A ^ B;      // XOR operation
+   assign Carry = A & B;    // AND operation
+   ```
 
-2. For Half Adder:
-   - Select appropriate inputs (A, B) and outputs (Sum, Carry)
-   - Define the functionality using assign statements:
-     - Sum = A XOR B
-     - Carry = A AND B
+##### Full Adder Implementation Steps
+1. **Port Declaration**
+   ```verilog
+   module full_adder(
+       input A,
+       input B,
+       input Cin,
+       output Sum,
+       output Carry
+   );
+   ```
 
-3. For Full Adder:
-   - Select appropriate inputs (A, B, Cin) and outputs (Sum, Carry)
-   - Define the functionality using two half adders and additional logic:
-     - First half adder: A + B
-     - Second half adder: (A + B) + Cin
-     - Final carry: (A AND B) OR (Cin AND (A XOR B))
+2. **Logic Implementation**
+   ```verilog
+   wire sum1;              // Intermediate sum
+   wire carry1, carry2;    // Intermediate carries
 
-### 4. Creating the Testbench
+   // First half adder
+   assign sum1 = A ^ B;
+   assign carry1 = A & B;
 
-1. In the second column, arrange the testbench code blocks in the correct order:
-   - Testbench name definition
-   - Signal declarations (reg for inputs, wire for outputs)
-   - Module instantiation
-   - Input wave definitions
-   - End of module
+   // Second half adder
+   assign Sum = sum1 ^ Cin;
+   assign carry2 = sum1 & Cin;
 
-2. Define the testbench signals:
-   - For Half Adder: `reg A, B; wire Sum, Carry`
-   - For Full Adder: `reg A, B, Cin; wire Sum, Carry`
+   // Final carry
+   assign Carry = carry1 | carry2;
+   ```
 
-3. Connect the ports correctly in the module instantiation, maintaining the same order as defined in the module.
+#### 3. Testbench Creation
 
-### 5. Validation and Observation
+1. **Signal Declaration**
+   - Half Adder:
+     ```verilog
+     reg A, B;
+     wire Sum, Carry;
+     ```
+   - Full Adder:
+     ```verilog
+     reg A, B, Cin;
+     wire Sum, Carry;
+     ```
 
-1. Click the "Validate" button to check your code.
-2. The observation column will show:
-   - Error messages in red if there are mistakes. Refer to the [Troubleshooting](#6-troubleshooting) section below for dealing with the Error messages.
-   - A truth table showing the expected behavior if the code is correct.
-3. If you need to start over, click the "Reset" button to shuffle the code blocks.
+2. **Module Instantiation**
+   - Half Adder:
+     ```verilog
+     half_adder ha(
+         .A(A),
+         .B(B),
+         .Sum(Sum),
+         .Carry(Carry)
+     );
+     ```
+   - Full Adder:
+     ```verilog
+     full_adder fa(
+         .A(A),
+         .B(B),
+         .Cin(Cin),
+         .Sum(Sum),
+         .Carry(Carry)
+     );
+     ```
 
-#### Verilog Syntax Reference
+3. **Test Cases**
+   - Half Adder: Test all 4 combinations (00, 01, 10, 11)
+   - Full Adder: Test all 8 combinations (000 to 111)
 
-- For detailed Verilog syntax rules, refer to the [Verilog Syntax Guide](https://www.chipverify.com/verilog/verilog-syntax).
-- For module and testbench examples, visit [ASIC World Verilog Tutorial](https://www.asic-world.com/verilog/veritut.html).
+#### 4. Validation Process
 
-### 6. Troubleshooting
+1. **Code Validation**
+   - Click "Validate" to check:
+     - Syntax correctness
+     - Port connections
+     - Logic implementation
+     - Testbench coverage
 
-If you see error messages, carefully check:
+2. **Expected Results**
+   - Successful validation shows:
+     - Truth table with all input combinations
+     - Waveform visualization
+     - Timing analysis
 
-- Module and testbench names follow the naming rules.
-- Code blocks are in the correct order.
-- All signal selections match the expected values.
-- Port connections are properly defined.
-- For Full Adder, ensure the half adder connections are correct.
+#### 5. Common Implementation Errors
 
-Additional tips:
+1. **Syntax Errors**
+   - Missing semicolons
+   - Incorrect port declarations
+   - Improper module structure
 
-- Use the Reset button to start fresh if needed.
-- Switch between adder types to compare their differences.
+2. **Logic Errors**
+   - Incorrect operator usage
+   - Missing intermediate signals
+   - Wrong port connections
 
-#### Important Reminders
+3. **Testbench Errors**
+   - Incomplete test cases
+   - Wrong signal declarations
+   - Incorrect port mapping
 
-- Verilog is case-sensitive.
-- All signals must be properly declared before use.
-- Testbench signals must match the module ports.
-- Code blocks must be in the correct order for the simulation to work.
-- Use blocking assignment (=) for combinational logic.
-- For Full Adder, ensure proper connection of intermediate signals.
+#### 6. Best Practices
+
+1. **Code Organization**
+   - Use consistent indentation
+   - Add meaningful comments
+   - Follow naming conventions
+
+2. **Testing Strategy**
+   - Test all input combinations
+   - Verify edge cases
+   - Check timing constraints
+
+3. **Documentation**
+   - Document module interfaces
+   - Explain complex logic
+   - Include test scenarios
+
+---
+
+> **Note:** This guide focuses on practical implementation steps. For theoretical concepts and detailed explanations, refer to the theory.md file.

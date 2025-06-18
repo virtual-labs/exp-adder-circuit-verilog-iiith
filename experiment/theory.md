@@ -1,170 +1,182 @@
-This page provides an overview of Verilog, its significance, and practical examples of digital design using Verilog. We will explore three fundamental designs in this experiment:
+This page provides a comprehensive overview of adder circuits and their implementation in Verilog. We will explore two fundamental adder designs:
 
-1. **T-Flip Flop**
-2. **Counter**
-3. **T-Flip Flop Using D-Flip Flop**
+1. **Half Adder**
+2. **Full Adder**
 
----
+### Understanding Adder Circuits
 
-Verilog is a hardware description language (HDL) developed to model electronic systems. It enables designers to describe the structure and behavior of digital circuits, facilitating simulation, synthesis, and verification. The modular nature of Verilog allows for efficient design, testing, and reuse of code.
+#### Half Adder
+A half adder is the most basic form of adder circuit that adds two single-bit binary numbers. It has two inputs ($A$ and $B$) and two outputs ($Sum$ and $Carry$).
 
----
-
-## 1. T-Flip Flop
-
-The Verilog code for a T-Flip Flop is shown below, accompanied by an explanation of its components:
-
-<p align="center">
-  <img src="images/t.jpg" alt="T-Flip Flop Verilog Code">
-</p>
-
-### Key Concepts
-
-- **Module:**  
-  A module is the fundamental building block in Verilog. It can represent a single element or a collection of lower-level design blocks. Modules encapsulate functionality and expose interfaces through input and output ports, allowing for abstraction and reuse.
-
-- **Module Name:**  
-  The module name is user-defined and is used to instantiate the module elsewhere in the design. Instantiation is demonstrated in the third example.
-
-- **Module Arguments:**  
-  Similar to function arguments in C, module arguments specify the input and output ports used for communication with other modules or the external environment.
-
-- **Input/Output Ports:**  
-  These ports facilitate data transfer into and out of the module. All arguments listed in the module declaration must be defined as either input or output within the module.
-
-- **Data Types:**  
-  In this example, the `reg` data type is used. Other data types, such as `wire`, will be introduced in subsequent examples. Refer to the chart below for an overview of Verilog data types:
-
-  <p align="center">
-    <img src="images/data.jpg" alt="Verilog Data Types">
-  </p>
-
-- **Always Block:**  
-  The `always` block contains statements that execute repeatedly, triggered by changes in specified signals (e.g., clock or reset).
-
-- **Posedge Clock:**  
-  The `posedge` (positive edge) of the clock triggers the execution of statements within the `always` block, corresponding to a transition from low to high voltage.
-
-- **Negedge Reset:**  
-  The `negedge` (negative edge) of the reset signal asynchronously sets the output to zero, regardless of the clock.
-
-- **Operators and Lexical Conventions:**  
-  Operators such as `~` (bitwise NOT) and `!` (logical NOT) are used in Verilog. The chart below summarizes various operators and conventions:
-
-  <p align="center">
-    <img src="images/lex.jpg" alt="Verilog Operators and Lexical Conventions">
-  </p>
-
-- **Loops:**  
-  Verilog supports control structures such as `for`, `if-else`, and `while`, similar to C. These structures use `begin` and `end` to define statement blocks.
-
-- **Blocking and Non-Blocking Assignments:**
-  - **Blocking (`=`):** Statements execute sequentially.
-  - **Non-Blocking (`<=`):** Statements execute concurrently.  
-    For example:
-    ```
-    a = b;
-    b = a;
-    ```
-    Both `a` and `b` will have the value of `b`.  
-    Using non-blocking assignment:
-    ```
-    a <= b;
-    b <= a;
-    ```
-    The values are swapped simultaneously.
-
----
-
-## 2. Counter
-
-The Verilog code for a counter is provided below, with explanations for each part:
-
-<p align="center">
-  <img src="images/c.jpg" alt="Counter Verilog Code">
-</p>
-
-### Additional Notes
-
-- **Assign Statement:**  
-  The `assign` keyword is used for continuous assignment. For example, `assign Q = tmp;` ensures that `Q` is updated immediately whenever `tmp` changes, regardless of execution sequence.
-
----
-
-## 3. T-Flip Flop Using D-Flip Flop
-
-The Verilog code for implementing a T-Flip Flop using a D-Flip Flop is shown below:
-
-<p align="center">
-  <img src="images/td.jpg" alt="T-Flip Flop using D-Flip Flop Verilog Code">
-</p>
-
-### Key Concepts
-
-- **Module Instantiation:**  
-  Modules are not defined within other modules; instead, they are instantiated (called) as needed. The module is referenced by its original name, but each instance must have a unique identifier. For example, the module `D_FF` is instantiated as `dff0`.
-
-- **Verilog Primitives:**  
-  Verilog provides built-in primitives such as `not`. In `not (d, q);`, `d` is the output and `q` is the input.
-
-- **Compiler Directives and System Tasks:**  
-  While not used in the above examples, Verilog supports compiler directives and system tasks for advanced functionality. Refer to the flowcharts below for more information:
-
-  <p align="center">
-    <img src="images/task.jpg" alt="Verilog System Tasks">
-  </p>
-  <p align="center">
-    <img src="images/direc.jpg" alt="Verilog Compiler Directives">
-  </p>
-
----
-
-# Types of Adders
-
-## Half Adder
-
+##### Circuit Diagram
 <p align="center">
   <img src="images/half_adder.png" alt="Half Adder Circuit">
 </p>
 
-A half adder adds two 1-bit binary numbers, **A** and **B**, producing a 1-bit **SUM (S)** and a 1-bit **CARRY (C)**. The carry is propagated to the next bit position. The outputs can be expressed as:
+##### Boolean Expressions
+- **Sum** ($S$): $S = A \oplus B$ (XOR operation)
+- **Carry** ($C$): $C = A \cdot B$ (AND operation)
 
-- **S = A XOR B**
-- **C = A AND B**
+##### Truth Table
+| $A$ | $B$ | $Sum$ | $Carry$ |
+|-----|-----|-------|---------|
+| $0$ | $0$ | $0$   | $0$     |
+| $0$ | $1$ | $1$   | $0$     |
+| $1$ | $0$ | $1$   | $0$     |
+| $1$ | $1$ | $0$   | $1$     |
 
-### Truth Table
+##### Verilog Implementation
+```verilog
+module half_adder(
+    input A,
+    input B,
+    output Sum,
+    output Carry
+);
+    // Sum is XOR of A and B
+    assign Sum = A ^ B;
+    
+    // Carry is AND of A and B
+    assign Carry = A & B;
+endmodule
+```
 
-| A   | B   | CARRY | SUM |
-| --- | --- | ----- | --- |
-| 0   | 0   | 0     | 0   |
-| 0   | 1   | 0     | 1   |
-| 1   | 0   | 0     | 1   |
-| 1   | 1   | 1     | 0   |
+#### Full Adder
+A full adder is an enhanced version of the half adder that can add three single-bit binary numbers. It has three inputs ($A$, $B$, and $C_{in}$) and two outputs ($Sum$ and $C_{out}$).
 
----
-
-## Full Adder
-
+##### Circuit Diagram
 <p align="center">
   <img src="images/full_adder.png" alt="Full Adder Circuit">
 </p>
 
-A full adder adds two 1-bit binary numbers (**A** and **B**) and a carry-in (**Cin**), producing a sum (**S**) and a carry-out (**Cout**). The outputs are defined as:
+##### Boolean Expressions
+- **Sum** ($S$): $S = A \oplus B \oplus C_{in}$
+- **Carry** ($C_{out}$): $C_{out} = (A \cdot B) + (C_{in} \cdot (A \oplus B))$
 
-- **S = A XOR B XOR Cin**
-- **Cout = (A AND B) OR (Cin AND (A XOR B))**
+##### Truth Table
+| $A$ | $B$ | $C_{in}$ | $Sum$ | $C_{out}$ |
+|-----|-----|----------|-------|-----------|
+| $0$ | $0$ | $0$      | $0$   | $0$       |
+| $0$ | $0$ | $1$      | $1$   | $0$       |
+| $0$ | $1$ | $0$      | $1$   | $0$       |
+| $0$ | $1$ | $1$      | $0$   | $1$       |
+| $1$ | $0$ | $0$      | $1$   | $0$       |
+| $1$ | $0$ | $1$      | $0$   | $1$       |
+| $1$ | $1$ | $0$      | $0$   | $1$       |
+| $1$ | $1$ | $1$      | $1$   | $1$       |
 
-### Truth Table
+##### Verilog Implementation
+```verilog
+module full_adder(
+    input A,
+    input B,
+    input Cin,
+    output Sum,
+    output Cout
+);
+    // Intermediate signals
+    wire sum1;        // Output of first XOR
+    wire carry1;      // Output of first AND
+    wire carry2;      // Output of second AND
 
-| A   | B   | Cin | Cout | S   |
-| --- | --- | --- | ---- | --- |
-| 0   | 0   | 0   | 0    | 0   |
-| 1   | 0   | 0   | 0    | 1   |
-| 0   | 1   | 0   | 0    | 1   |
-| 1   | 1   | 0   | 1    | 0   |
-| 0   | 0   | 1   | 0    | 1   |
-| 1   | 0   | 1   | 1    | 0   |
-| 0   | 1   | 1   | 1    | 0   |
-| 1   | 1   | 1   | 1    | 1   |
+    // First half adder
+    assign sum1 = A ^ B;
+    assign carry1 = A & B;
+
+    // Second half adder
+    assign Sum = sum1 ^ Cin;
+    assign carry2 = sum1 & Cin;
+
+    // Final carry
+    assign Cout = carry1 | carry2;
+endmodule
+```
+
+### Key Concepts in Verilog Implementation
+
+#### 1. Module Structure
+- **Module Declaration**: Defines the interface of the circuit
+- **Port Declaration**: Specifies inputs and outputs
+- **Internal Signals**: Declares wires for intermediate connections
+- **Assign Statements**: Implements combinational logic
+
+#### 2. Data Types
+- **input**: For input ports
+- **output**: For output ports
+- **wire**: For internal connections
+- **reg**: For testbench signals
+
+#### 3. Operators
+- **$\oplus$**: Bitwise XOR
+- **$\cdot$**: Bitwise AND
+- **$+$**: Bitwise OR
+- **$\sim$**: Bitwise NOT
+
+#### 4. Design Considerations
+1. **Combinational Logic**
+   - Use `assign` statements for combinational circuits
+   - Avoid feedback loops
+   - Consider propagation delays
+
+2. **Signal Declaration**
+   - Declare all signals before use
+   - Use meaningful names
+   - Follow naming conventions
+
+3. **Port Connections**
+   - Match port directions (input/output)
+   - Maintain consistent bit widths
+   - Use named port connections in testbench
+
+### Applications of Adder Circuits
+
+1. **Arithmetic Logic Units (ALU)**
+   - Basic building block for arithmetic operations
+   - Used in processors and microcontrollers
+
+2. **Digital Signal Processing**
+   - Part of digital filters
+   - Used in signal processing algorithms
+
+3. **Cryptography**
+   - Used in encryption algorithms
+   - Part of hash functions
+
+4. **Error Detection**
+   - Used in parity checkers
+   - Part of error correction codes
+
+### Performance Considerations
+
+1. **Propagation Delay**
+   - Half Adder: $2$ gate delays
+   - Full Adder: $3$ gate delays
+
+2. **Power Consumption**
+   - Depends on switching activity
+   - Affected by input patterns
+
+3. **Area Requirements**
+   - Half Adder: $2$ gates
+   - Full Adder: $5$ gates
+
+### Testing and Verification
+
+1. **Functional Testing**
+   - Verify all input combinations
+   - Check output waveforms
+   - Validate timing requirements
+
+2. **Testbench Structure**
+   - Input signal generation
+   - Output monitoring
+   - Error checking
+
+3. **Simulation**
+   - Use waveform viewer
+   - Check timing diagrams
+   - Verify functionality
 
 ---
+
+> **Note:** This theory guide focuses on the fundamental concepts of adder circuits and their Verilog implementation. For practical implementation steps, refer to the procedure.md file.
