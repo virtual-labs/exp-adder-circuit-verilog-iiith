@@ -155,7 +155,7 @@
       "difficulty": "advanced"
     },
     {
-      "question": "What is the output of a full adder when both input bits are 1?",
+      "question": "What is the output of a full adder when both input bits (A and B) are 1 and carry-in (Cin) is 0?",
       "answers": {
         "a": "Sum = 0, Carry = 1",
         "b": "Sum = 1, Carry = 0",
@@ -163,12 +163,12 @@
         "d": "Sum = 0, Carry = 0"
       },
       "explanations": {
-        "a": "Incorrect. When both input bits are 1, the sum output of a full adder is 1, and the carry output is 0.",
-        "b": "Incorrect. The correct combination for both input bits being 1 is Sum = 1 and Carry = 0.",
-        "c": "Incorrect. The correct combination for both input bits being 1 is Sum = 1 and Carry = 0.",
-        "d": "Correct. When both input bits are 1, the sum output of a full adder is 0, and the carry output is 1"
-},
-      "correctAnswer": "b",
+        "a": "Correct. When A=1, B=1, and Cin=0, the sum output is 0 and carry output is 1.",
+        "b": "Incorrect. When A=1, B=1, and Cin=0, the sum output is 0, not 1.",
+        "c": "Incorrect. When A=1, B=1, and Cin=0, the carry output is 1, but the sum output is 0, not 1.",
+        "d": "Incorrect. When A=1, B=1, and Cin=0, the carry output is 1, not 0."
+      },
+      "correctAnswer": "a",
       "difficulty": "beginner"
     }
   ]

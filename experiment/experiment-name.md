@@ -1,1 +1,1 @@
-## Design of Adder using Verilog
+## Design of Adder circuit using Verilog
