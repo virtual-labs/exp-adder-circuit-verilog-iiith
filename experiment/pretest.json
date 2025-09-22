@@ -136,6 +136,23 @@
       },
       "correctAnswer": "b",
       "difficulty": "intermediate"
+    },
+    {
+      "question": "What is the primary purpose of a testbench in Verilog?",
+      "answers": {
+        "a": "To synthesize hardware",
+        "b": "To simulate and verify the functionality of a design",
+        "c": "To optimize power consumption",
+        "d": "To generate clock signals"
+      },
+      "explanations": {
+        "a": "Incorrect. Synthesis is performed on the design, not the testbench.",
+        "b": "Correct. A testbench is used to simulate and verify the functionality of a Verilog design by providing stimulus and checking outputs.",
+        "c": "Incorrect. Power optimization is not the primary purpose of a testbench.",
+        "d": "Incorrect. While a testbench may generate clock signals, its main purpose is simulation and verification."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
     }
   ]
 }
