@@ -1,0 +1,175 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "Which Verilog statement is used to assign a value to a wire?",
+      "answers": {
+        "a": "always",
+        "b": "assign",
+        "c": "if-else",
+        "d": "case"
+      },
+      "explanations": {
+        "a": "Incorrect. The 'always' statement is used for specifying procedural blocks, not for assigning values to wires.",
+        "b": "Correct. The 'assign' statement is used to assign a value to a wire in Verilog.",
+        "c": "Incorrect. The 'if-else' statement is used for conditional execution, not for assigning values to wires.",
+        "d": "Incorrect. The 'case' statement is used for implementing case-based logic, not for assigning values to wires."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which Verilog keyword is used to declare a 2-bit signal?",
+      "answers": {
+        "a": "bit [1:0]",
+        "b": "wire [1:0]",
+        "c": "reg [1:0]",
+        "d": "logic [1:0]"
+      },
+      "explanations": {
+        "a": "Incorrect. 'bit [1:0]' is not a valid syntax for declaring a 2-bit signal in Verilog.",
+        "b": "Correct. 'wire [1:0]' is used to declare a 2-bit wire signal in Verilog.",
+        "c": "Incorrect. 'reg [1:0]' is used to declare a 2-bit register, not a signal.",
+        "d": "Incorrect. 'logic [1:0]' is used in SystemVerilog for declaring a 2-bit signal, but it may not be supported in all Verilog versions."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In Verilog, what is the purpose of a full adder module?",
+      "answers": {
+        "a": "To add two binary numbers without a carry input",
+        "b": "To add two binary numbers with a carry input",
+        "c": "To subtract two binary numbers",
+        "d": "To perform bitwise AND operation on two binary numbers"
+      },
+      "explanations": {
+        "a": "Incorrect. A full adder requires a carry input to perform addition of two binary numbers.",
+        "b": "Correct. The purpose of a full adder module in Verilog is to add two binary numbers along with a carry input.",
+        "c": "Incorrect. Subtracting two binary numbers is not the purpose of a full adder module.",
+        "d": "Incorrect. Performing bitwise AND operation is not the purpose of a full adder module."
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which Verilog construct is commonly used to implement a full adder?",
+      "answers": {
+        "a": "Always block",
+        "b": "Case statement",
+        "c": "If-else statement",
+        "d": "Module instantiation"
+      },
+      "explanations": {
+        "a": "Incorrect. The 'always' block is a procedural construct used for specifying behavioral logic, but it is not specific to implementing a full adder.",
+        "b": "Incorrect. The case statement is a control flow construct used for making multiple choices, but it is not specific to implementing a full adder.",
+        "c": "Incorrect. The if-else statement is a conditional construct used for making binary choices, but it is not specific to implementing a full adder.",
+        "d": "Correct. Module instantiation is commonly used in Verilog to implement a full adder by instantiating multiple instances of the half adder and connecting their inputs and outputs."
+      },
+      "correctAnswer": "d",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "Which Verilog operator is commonly used to perform XOR operation on two signals?",
+      "answers": {
+        "a": "^",
+        "b": "&",
+        "c": "|",
+        "d": "~"
+      },
+      "explanations": {
+        "a": "Correct. The '^' operator is commonly used in Verilog to perform XOR (exclusive OR) operation on two signals.",
+        "b": "Incorrect. The '&' operator is used for bitwise AND operation, not XOR operation.",
+        "c": "Incorrect. The '|' operator is used for bitwise OR operation, not XOR operation.",
+        "d": "Incorrect. The '~' operator is used for bitwise negation (NOT) operation, not XOR operation."
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "Which Verilog data type is commonly used to represent a 1-bit signal?",
+      "answers": {
+        "a": "Integer",
+        "b": "Wire",
+        "c": "Reg",
+        "d": "Bit"
+      },
+      "explanations": {
+        "a": "Incorrect. Integer is used for representing integer values, not 1-bit signals in Verilog.",
+        "b": "Correct. Wire is commonly used in Verilog to represent a 1-bit signal or a wire connection.",
+        "c": "Incorrect. Reg is used for representing registers, which can hold multiple bits of data.",
+        "d": "Incorrect. Bit is not a specific Verilog data type for representing 1-bit signals."
+      },
+      "correctAnswer": "b",
+      "difficulty": "intermediate"
+    },
+    {
+      "question": "In Verilog, what is the purpose of a carry out (Carry) signal in a full adder?",
+      "answers": {
+        "a": "To indicate an overflow in addition",
+        "b": "To indicate an underflow in addition",
+        "c": "To hold the sum of the least significant bits",
+        "d": "To hold the carry from the most significant bit addition"
+      },
+      "explanations": {
+        "a": "Correct. The carry out (Carry) signal in a full adder is used to indicate an overflow in addition, where the sum exceeds the maximum representable value.",
+        "b": "Incorrect. The carry out (Carry) signal is not used to indicate an underflow in addition.",
+        "c": "Incorrect. The carry out (Carry) signal does not hold the sum of the least significant bits.",
+        "d": "Incorrect. The carry out (Carry) signal holds the carry from the most significant bit addition, not the sum."
+      },
+      "correctAnswer": "a",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Which Verilog construct is commonly used to implement a 4-bit ripple carry adder?",
+      "answers": {
+        "a": "For loop",
+        "b": "While loop",
+        "c": "Repeat loop",
+        "d": "Generate loop"
+      },
+      "explanations": {
+        "a": "Incorrect. The for loop in Verilog is not commonly used for implementing a 4-bit ripple carry adder.",
+        "b": "Incorrect. The while loop is not commonly used for implementing a 4-bit ripple carry adder in Verilog.",
+        "c": "Incorrect. The repeat loop is not commonly used for implementing a 4-bit ripple carry adder in Verilog.",
+        "d": "Correct. The generate loop construct is commonly used in Verilog to implement a 4-bit ripple carry adder by instantiating multiple instances of the full adder module and connecting their inputs and outputs."
+      },
+      "correctAnswer": "d",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "Which Verilog construct could be used to model the combinational logic in a full adder?",
+      "answers": {
+        "a": "Always block",
+        "b": "Case statement",
+        "c": "If-else statement",
+        "d": "Always_comb block"
+      },
+      "explanations": {
+        "a": "Incorrect. The 'always' block is used for specifying procedural behavior, not specifically for modeling combinational logic in a full adder.",
+        "b": "Incorrect. The case statement is used for making multiple choices, but it is not specific to modeling the combinational logic in a full adder.",
+        "c": "Incorrect. The if-else statement is used for making binary choices, but it is not specific to modeling the combinational logic in a full adder.",
+        "d": "Correct. The always_comb block is a SystemVerilog construct used to model combinational logic, which is suitable for modeling the combinational part of a full adder."
+      },
+      "correctAnswer": "d",
+      "difficulty": "advanced"
+    },
+    {
+      "question": "What is the output of a full adder when both input bits (A and B) are 1 and carry-in (Cin) is 0?",
+      "answers": {
+        "a": "Sum = 0, Carry = 1",
+        "b": "Sum = 1, Carry = 0",
+        "c": "Sum = 1, Carry = 1",
+        "d": "Sum = 0, Carry = 0"
+      },
+      "explanations": {
+        "a": "Correct. When A=1, B=1, and Cin=0, the sum output is 0 and carry output is 1.",
+        "b": "Incorrect. When A=1, B=1, and Cin=0, the sum output is 0, not 1.",
+        "c": "Incorrect. When A=1, B=1, and Cin=0, the carry output is 1, but the sum output is 0, not 1.",
+        "d": "Incorrect. When A=1, B=1, and Cin=0, the carry output is 1, not 0."
+      },
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    }
+  ]
+}
